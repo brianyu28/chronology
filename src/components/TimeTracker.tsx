@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Hotkey, Hotkeys, HotkeysTarget, Toaster, Position, Intent, Spinner } from "@blueprintjs/core";
+import { Hotkey, Hotkeys, HotkeysTarget, Spinner } from "@blueprintjs/core";
 import { AppState, CategoryState, ConfigState, Dispatch, SelectionState } from "../reducers/types";
 
 import "../css/TimeTracker.css";
@@ -203,13 +203,6 @@ class TimeTracker extends React.Component<TimeTrackerProps, TimeTrackerState> {
     this.setState({ isSubmitting: true, submissionIdentifier });
     logActivity(this.props.url, category, subcategory)
     .then(() => {
-      Toaster.create({
-        position: Position.TOP_RIGHT,
-      }).show({
-        intent: Intent.SUCCESS,
-        message: `Activity logged`,
-        timeout: 1000
-      });
       this.props.cancelSelection();
       this.setState({ isSubmitting: false, submissionIdentifier: "" });
     });
